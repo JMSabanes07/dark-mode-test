@@ -15,14 +15,15 @@ export const ThemeContext = ({ children }) => {
     const localTheme = localStorage.getItem('theme')
 
     if (localTheme) {
-      return setTheme(localTheme)
+      setTheme(localTheme)
+      setIsloading(false)
+      return
     }
-    if (isSistemDark.matches) {
-      const event = (event) => {
-        setTheme(event.matches ? 'dark' : 'light')
-      }
-      isSistemDark.addListener(event)
+    const event = (event) => {
+      setTheme(event.matches ? 'dark' : 'light')
     }
+
+    isSistemDark.addListener(event)
     setIsloading(false)
     return () => removeEventListener(event)
   }, [])
