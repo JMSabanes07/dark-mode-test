@@ -28,4 +28,4 @@ or
 yarn run dev
 ```
 
-4 - Go to localhost:3000
+4 - Go to http://localhost:3000
