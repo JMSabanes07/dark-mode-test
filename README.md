@@ -27,3 +27,5 @@ or
 
 yarn run dev
 ```
+
+4 - Go to localhost:3000
