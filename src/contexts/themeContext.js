@@ -10,9 +10,21 @@ export const ThemeContext = ({ children }) => {
   const [isLoading, setIsloading] = useState(true)
 
   useEffect(() => {
+    const isSistemDark = window.matchMedia('(prefers-color-scheme: dark)')
+
     const localTheme = localStorage.getItem('theme')
-    localTheme && setTheme(localTheme)
+
+    if (localTheme) {
+      return setTheme(localTheme)
+    }
+    if (isSistemDark.matches) {
+      const event = (event) => {
+        setTheme(event.matches ? 'dark' : 'light')
+      }
+      isSistemDark.addListener(event)
+    }
     setIsloading(false)
+    return () => removeEventListener(event)
   }, [])
 
   const toggle = () => {
